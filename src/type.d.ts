@@ -31,3 +31,8 @@ interface IPhonetic {
   sourceUrl: string
   text: string
 }
+
+interface Language {
+  value: string
+  label: string
+}
