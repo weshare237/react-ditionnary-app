@@ -7,6 +7,7 @@ import Header from './components/Header/Header'
 const App: React.FC = () => {
   const [meanings, setMeanings] = useState<IWord[]>([])
   const [language, setLanguage] = useState<string>('en')
+  const [word, setWord] = useState<string>('')
 
   const fetchAPI = async () => {
     try {
@@ -34,7 +35,12 @@ const App: React.FC = () => {
         maxWidth='md'
         style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}
       >
-        <Header language={language} setLanguage={setLanguage} />
+        <Header
+          language={language}
+          setLanguage={setLanguage}
+          setWord={setWord}
+          word={word}
+        />
       </Container>
     </div>
   )

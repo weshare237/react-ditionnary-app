@@ -6,9 +6,11 @@ import languages from '../../data/language'
 interface Props {
   language: string
   setLanguage: React.Dispatch<React.SetStateAction<string>>
+  word: string
+  setWord: React.Dispatch<React.SetStateAction<string>>
 }
 
-const Header: React.FC<Props> = ({ language, setLanguage }) => {
+const Header: React.FC<Props> = ({ language, setLanguage, word, setWord }) => {
   const darkTheme = createTheme({
     palette: {
       primary: {
@@ -20,17 +22,22 @@ const Header: React.FC<Props> = ({ language, setLanguage }) => {
 
   return (
     <div className='header'>
-      <span className='title'>Thinklio</span>
+      <span className='title'>{word ? word : 'Thinklio'}</span>
       <div className='inputs'>
         <ThemeProvider theme={darkTheme}>
-          <TextField id='outlined-basic' label='Outlined' variant='outlined' />
           <TextField
-            id='outlined-select-currency'
+            label='Search a word'
+            variant='outlined'
+            className='search'
+            value={word}
+            onChange={(e) => setWord(e.target.value)}
+          />
+          <TextField
             select
-            label='Select'
+            label='Language'
+            className='select'
             value={language}
             onChange={(e) => setLanguage(e.target.value)}
-            helperText='Please select your language'
           >
             {languages.map((language: Language) => (
               <MenuItem key={language.label} value={language.label}>
